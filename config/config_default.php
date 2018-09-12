@@ -18,9 +18,9 @@ $_config = array();
  * $_config['db']['2']['dbhost'] = 'localhost';
  * ...
  */
-$_config['db'][1]['dbhost']  		= 'localhost';//支持三种直接加端口如：127.0.0.1:3306或使用UNix socket 如：/tmp/mysql.sock
-$_config['db'][1]['dbuser']  		= 'root';
-$_config['db'][1]['dbpw'] 	 		= 'root';
+$_config['db'][1]['dbhost']  		= getenv("MYSQL_HOST").":".getenv("MYSQL_PORT");//支持三种直接加端口如：127.0.0.1:3306或使用UNix socket 如：/tmp/mysql.sock
+$_config['db'][1]['dbuser']  		= getenv("MYSQL_USER");
+$_config['db'][1]['dbpw'] 	 		= getenv("MYSQL_PASS");
 $_config['db'][1]['dbcharset'] 		= 'utf8';
 $_config['db'][1]['pconnect'] 		= 0;
 $_config['db'][1]['dbname']  		= 'dzzoffice';

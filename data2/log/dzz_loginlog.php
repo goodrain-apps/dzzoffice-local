@@ -1,0 +1,3 @@
+<?PHP exit;?>	1536739637	admin	1	172.17.0.1	登录成功	127.0.0.1/user.php?mod=login&amp;op=logging&amp;action=login&amp;loginsubmit=yes&amp;loginhash=LqdRm&amp;returnType=json	http://127.0.0.1:8080/user.php?mod=login
+<?PHP exit;?>	1536740563	admin	1	172.17.0.1	登录成功	127.0.0.1/user.php?mod=login&amp;op=logging&amp;action=login&amp;loginsubmit=yes&amp;loginhash=LqVW8&amp;returnType=json	http://127.0.0.1:8080/user.php?mod=login
+<?PHP exit;?>	1536740622	admin	1	172.17.0.1	登录成功	127.0.0.1/user.php?mod=login&amp;op=logging&amp;action=login&amp;loginsubmit=yes&amp;loginhash=LMWEz&amp;returnType=json	http://127.0.0.1:8080/user.php?mod=login

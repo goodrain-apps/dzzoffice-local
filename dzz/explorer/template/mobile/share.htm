@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>分享</title>
+    <base href="{$_G['siteurl']}" />
+    <script type="text/javascript">var DZZSCRIPT='{DZZSCRIPT}',LANG='{$_G[language]}', STATICURL = 'static/', IMGDIR = '{$_G[setting][imgdir]}', VERHASH = '{VERHASH}', charset = '{CHARSET}', dzz_uid = '$_G[uid]', cookiepre = '{$_G[config][cookie][cookiepre]}', cookiedomain = '{$_G[config][cookie][cookiedomain]}', cookiepath = '{$_G[config][cookie][cookiepath]}',attackevasive = '{$_G[config][security][attackevasive]}', disallowfloat = '{$_G[setting][disallowfloat]}',  REPORTURL = '$_G[currenturl_encode]', SITEURL = '$_G[siteurl]', JSPATH = '$_G[setting][jspath]',MOD_PATH='{MOD_PATH}',APP_URL='{MOD_URL}',MOD_URL='{MOD_URL}';</script>
+    <link href="static/jquery_weui/css/weui.min.css" rel="stylesheet">
+    <link href="static/jquery_weui/css/jquery-weui.min.css" rel="stylesheet">
+    <link href="static/dzzicon/icon.css" rel="stylesheet">
+    <link href="{MOD_PATH}/css/mobile/index.css" rel="stylesheet">
+    <link href="{MOD_PATH}/css/mobile/package.css" rel="stylesheet">
+</head>
+<body>
+<section class="weui-address">
+    <a href="{MOD_URL}" class="weui-index">
+        <span class="dzz dzz-home dzz-index"></span>
+        <i class="dzz dzz-vline dzz-index-vline"></i>
+    </a>
+    <div class="weui-address-container" id="weui_address_scroll">
+        <div class="scroller">
+            <ul class="weui-address-field">
+                <li>
+                    <a href="{$_G[siteurl]}{MOD_URL}&op=mobile&do=share">分享</a><span class="dzz dzz-chevron-right"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--列表开始-->
+<section class="weui-cells weui-cells__recent weui-cells__margin_footer" id="fileList-share">
+
+
+</section>
+<!--无内容提示页-->
+<div class="weui-cell-search-normal" style="display: none;">
+	<!--{template mobile/template_normal}-->
+</div>
+<!--底部开始-->
+<footer class="weui-cell-footer">
+    <a href="search.htm" class="weui-footer-item searchfile">
+        <i class="dzz dzz-search"></i>
+        <p>搜索</p>
+    </a>
+    <a href="javascript:;" class="weui-footer-item" onclick="location.reload();">
+        <i class="dzz dzz-refresh"></i>
+        <p>刷新</p>
+    </a>
+</footer>
+<!--底部结束-->
+</body>
+<script type="text/javascript" src="static/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="static/jquery_weui/js/jquery-weui.min.js"></script>
+<script type="text/javascript" src="{MOD_PATH}/js/mobile/appevent.js"></script>
+<script type="text/javascript">
+    var param = {};
+    $(function () {
+        $.post(MOD_URL+'&op=mobile&do=share&operation=filelist', {k: Math.random()}, function (html) {
+            $('#fileList-share').html(html);
+            $('.weui-cells__margin_footer').css('margin-bottom','70px');
+            if(!param.total){
+                var con = $('.weui-cell-search-normal').html();
+                $('#fileList-share').html(con);
+                $('.weui-cells__margin_footer').css('margin-bottom',0);
+                return false;
+            }
+
+        })
+        height();
+    })
+    $(document).off('tap.searchfile').on('tap.searchfile', '.searchfile', function () {
+        window.location.href =  '{MOD_URL}&op=mobile&do=search';
+    })
+    //单页滚动加载
+    var loading = false;  //状态标记
+    $(document.body).infinite().on("infinite", function () {
+        if (loading) return;
+        loading = true;
+        if (param.page) {
+            jQuery.ajax({
+                url: MOD_URL+'&op=mobile&do=share&operation=filelist',
+                type: 'get',
+                data: param,
+                success: function (data) {
+                    jQuery(data).appendTo("#fileList-share");
+                    if (!param.page) {
+                        loading = false;
+                    } else {
+                        loading = true;
+                    }
+                }
+            })
+        } else {
+            jQuery(document.body).destroyInfinite();
+        }
+    });
+    //获取id高度
+    function height(){
+        var h = $(document).outerHeight(true);
+        var h2 = $('.weui-cell-footer').outerHeight(true);
+        $('.weui-cell-search-images').css('height',h-h2);
+    }
+</script>
+<!--{eval output();}-->
+</html>
+

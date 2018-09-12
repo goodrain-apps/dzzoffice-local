@@ -1,0 +1,43 @@
+<!--{template common/header_simple_start}-->
+<script type="text/javascript" src="$onlyDocumentUrl"></script>
+<!--{template common/header_simple_end}-->
+<style>
+html,body{
+	height:100%;
+	overflow:hidden;
+}
+</style> 
+<div id="revViewerContainer" style="width:100%;height:100%;overflow:auto">
+	<div id="revViewer"></div> 
+</div> 
+
+<script>
+	var rd_instanceId = '{$retVal[instanceId]}';
+	var rd_permissions = '{$retVal[permissions]}';
+	var rd_title =  '{$retVal[title]}';
+	var rd_fileId = '{$retVal[fileId]}';
+	var rd_token = '{$retVal[token]}';
+	var rd_urlsrc = '{$retVal[urlsrc]}';
+	var rd_path = '{$retVal[path]}';
+	var rd_canonical_webroot = '{$retVal[canonical_webroot]}';
+	var wourl = '{$retVal[wopi_url2]}';
+	var token_access ='{$retVal[access_token]}';
+	var lockstatus='{$retVal[lockstatus]}';
+	var urlsrc=wourl;//'{MOD_URL}&op=wopi&path={$meta[dpath]}';
+	// form to post the access token for WOPISrc
+	var form = '<form id="loleafletform_viewer" name="loleafletform_viewer" target="loleafletframe_viewer" action="' + urlsrc + '" method="post">' +
+		'<input name="access_token" value="' + token_access + '" type="hidden"/></form>';
+
+	// iframe that contains the Collabora Online Viewer
+	var frame = '<iframe id="loleafletframe_viewer" name= "loleafletframe_viewer" style="width:100%;height:100%;position:absolute;"/>';
+
+	$('#revViewer').append(form);
+	$('#revViewer').append(frame);
+
+	// submit that
+	$('#loleafletform_viewer').submit(); 
+	if(lockstatus=='409'){
+		Alert('其他人正在编辑此文件,暂时没有编辑权限，请稍候重试');
+	}
+</script> 
+<!--{template footer}-->

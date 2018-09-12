@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>编辑分享</title>
+    <base href="{$_G['siteurl']}" />
+    <script type="text/javascript">var DZZSCRIPT='{DZZSCRIPT}',LANG='{$_G[language]}', STATICURL = 'static/', IMGDIR = '{$_G[setting][imgdir]}', VERHASH = '{VERHASH}', charset = '{CHARSET}', dzz_uid = '$_G[uid]', cookiepre = '{$_G[config][cookie][cookiepre]}', cookiedomain = '{$_G[config][cookie][cookiedomain]}', cookiepath = '{$_G[config][cookie][cookiepath]}',attackevasive = '{$_G[config][security][attackevasive]}', disallowfloat = '{$_G[setting][disallowfloat]}',  REPORTURL = '$_G[currenturl_encode]', SITEURL = '$_G[siteurl]', JSPATH = '$_G[setting][jspath]',MOD_PATH='{MOD_PATH}',APP_URL='{MOD_URL}',MOD_URL='{MOD_URL}';</script>
+    <link href="static/jquery_weui/css/weui.min.css" rel="stylesheet">
+    <link href="static/jquery_weui/css/jquery-weui.min.css" rel="stylesheet">
+    <link href="static/dzzicon/icon.css" rel="stylesheet">
+    <link href="{MOD_PATH}/css/mobile/index.css" rel="stylesheet">
+    <link href="{MOD_PATH}/css/mobile/package.css" rel="stylesheet">
+</head>
+<body>
+<!--编辑分享头部开始-->
+<header class="weui-share-edit weui-flex">
+    <div class="placeholder weui-share-edit-cancel"><a href="javascript:;" class="weui-share-div-edit-cancel">取消</a>
+    </div>
+    <div class="weui-flex__item">编辑分享</div>
+    <div class="placeholder weui-share-edit-keep">保存</div>
+</header>
+<!--编辑分享头部结束-->
+<!--表单开始-->
+<form class="weui-cells weui-cells_form weui-share-edit-form" action="{MOD_URL}&op=mobile&do=ajax&operation=editshare"
+      method="post" id="submitdata">
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">分享标题</label></div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" type="text" name="share[title]" placeholder="请输入文件名" value="$share['title']">
+            <!--{if $shareid}-->
+            <input type="hidden" name="shareid" value="$shareid"/>
+            <!--{/if}-->
+            <input type="hidden" name="rid" value="$files"/>
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label for="" class="weui-label">到期日期</label></div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" type="date" name="share[endtime]" value="$share['endtime']" placeholder="点击设置到期时间">
+            <span class="dzz dzz-expand-more weui-input-more-date weui-input-more"></span>
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">分享次数</label></div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" type="text" name="share[times]" placeholder="输入分享次数" value="$share[times]">
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">设置密码</label></div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" type="password" name="share[password]" placeholder="输入密码" value="$share[password]">
+        </div>
+    </div>
+    <!--<div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">分享地址</label></div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" type="text" value="$share[sharelink]" placeholder="分享地址" readonly="readonly" disabled="disabled">
+            <!-- <span class="weui-input-more weui-iput-more-copy">复制</span>
+        </div>
+    </div>-->
+</form>
+</section>
+<!--表单结束-->
+</body>
+<script type="text/javascript" src="static/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="static/jquery_weui/js/jquery-weui.min.js"></script>
+<script type="text/javascript" src="{MOD_PATH}/js/mobile/appevent.js"></script>
+<script type="text/javascript">
+    $(document).off('tap.saveshare').on('tap.saveshare', '.weui-share-edit-keep', function () {
+        var data = $('#submitdata').serialize();
+        $.post(MOD_URL + '&op=mobile&do=ajax&operation=editshare', data, function (data) {//编辑或创建成功跳转
+            if (data['success']) {
+                var rid = data['rid'];
+                if ($('#submitForm').length < 1) {
+                    var form = $('<form id="submitForm"></form>');
+                    $(document.body).append(form);
+                } else {
+                    form = $('#submitForm');
+                }
+                var action = MOD_URL + '&op=mobile&do=ajax&operation=share',rinput = $('<input type="text" name="rid" />');
+                rinput.val(rid);
+                form.append(rinput);
+                form.attr('action', action);
+                form.attr('method', 'post');
+                form.submit();
+            } else {
+                $.toast(data['error'],"cancel");
+            }
+        }, 'json')
+    })
+    //weui-share-div-edit-cancel
+    $(document).off('tap.sharecancel').on('tap.sharecancel', '.weui-share-edit-cancel', function () {
+        window.history.go(-1);
+    })
+</script>
+<!--{eval output();}-->
+</html>
+

@@ -1,0 +1,112 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="{MOD_PATH}/images/word.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/switchery.js"></script>
+<script type="text/javascript" src="static/bootstrap/js/bootstrap.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="{MOD_PATH}/scripts/index.js?{VERHASH}"></script>
+<style>
+    body {
+        min-width: 520px;
+    }
+    .navbar-inverse {
+        background-color: #4664d2;
+    }
+    .input-search .input-search-icon, .input-search .header-closebutton {
+        left:20px; 
+    }
+</style>
+<!--{template common/header_simple_end}-->
+<nav class="navbar navbar-inverse back-nav">
+    <ul class="nav navbar-nav navbar-nav-left view-navbar-nav-left">
+        <li>
+            <a href="{MOD_URL}" style="padding: 8px;">
+                <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width: 24px;height: 24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+            </a>
+        </li>
+        <li>
+            <a href="{MOD_URL}" class="navbar-nav-left-appname">{eval echo lang(settings)}</a>
+        </li>
+    </ul>
+</nav>
+<div class="bs-container clearfix" style="height: 100%">
+    <div class="bs-main-container">
+        <div class="main-content container clearfix" id="itemContainer" style="padding:0;height: 100%;width: 100%;">
+                <div class="setting-wrap">
+                    <form id="setform" action="{MOD_URL}&op=ajax&do=setting&operation=setbase" method="post">
+                        <div class="setting-item save-setting" style="padding-right: 0">
+                            <label for="">{eval echo lang(file_save_path)}</label>
+                            <input type="button" name="savedir" class="save-btn" data-val="" value="<!--{if $setting[dirpath]}-->$setting[dirpath]<!--{else}-->{eval echo lang(chose_file_save_path)}<!--{/if}-->" onclick="showWindow('savepath_sel', '{DZZSCRIPT}?mod=system&op=selposition&handlekey=seldir&allowcreate=1&callback=seldir&range=1&selhome=1', 'get', 0)">
+                            <input type="hidden" name="savepath" value="{$setting[savepath]}">
+                            <b class="caret save-caret"></b>
+                        </div>
+                        <div class="setting-item">
+                            <label for="">{eval echo lang(open_type)}</label>
+                            <div class="setting-info">{eval echo lang(chose_open_type)}</div>
+                            <select class="form-control toogle" name="appid" style="width: 160px;">
+								<option value="0">{lang use_default}</option>
+                                <!--{loop $apps $value}-->
+                                    <option value="{$value[appid]}" <!--{if $setting['appid'] == $value[appid]}--> selected <!--{/if}--> >{$value[appname]}</option>
+                                <!--{/loop}-->
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label for="">{eval echo lang(open_now)}</label>
+                            <div class="setting-info">{eval echo lang(created_open_now)}</div>
+                            <div class="toogle">
+                                <input type="checkbox" name="createtype" class="js-switch-primary primary2" <!--{if $setting['createtype']}-->checked<!--{/if}--> />
+                                <script type="text/javascript">
+                                    var elem = document.querySelector('.primary2');
+                                    Switchery(elem, {
+                                        color: '#4c89fb'
+                                    });
+                                </script>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <label for="">{eval echo lang(template)}</label>
+                            <div class="setting-info">{eval echo lang(show_nearly_use)}</div>
+                            <div class="toogle">
+                                <input type="checkbox" name="tplhide" class="js-switch-primary primary1" <!--{if $setting['tplhide']}-->checked<!--{/if}--> />
+                                <script type="text/javascript">
+                                    var elem = document.querySelector('.primary1');
+                                    Switchery(elem, {
+                                        color: '#4c89fb'
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="setting-btnwrap">
+                        <button class="btn btn-primary" style="margin-top: 10px" onclick="savesetting();">{eval echo lang(save)}</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    
+    function savesetting(){
+        var form = jQuery("#setform").serializeArray();
+        console.log(form);
+        var data = {};
+        form.forEach(function(e){
+            data[e.name] = e.value;
+        });
+        data.createtype = data.createtype == 'on' ? 1 : 0;
+        data.tplhide = data.tplhide == 'on' ? 1 : 0;
+        jQuery.post('{MOD_URL}&op=ajax&do=setting&operation=setbase', data, function(json){
+            if (json.code == 200) {
+                showmessage(json.message, 'success', 1000, 1);
+            } else {
+                showmessage(json.message, 'error', 1000, 1);
+            }
+        },'json')
+    }
+
+    function seldir(fid, data){
+        jQuery("input[name='savepath']").val(fid);
+        jQuery("input[name='savedir']").val(data.relativepath);
+    }
+</script>

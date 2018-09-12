@@ -1,0 +1,9 @@
+data/*.lock
+data/template/*
+data/cache/*
+data/attachment/*
+data/avatar/*
+data/extdata/*
+data/log/*
+data/sysdata/*
+data/update/*

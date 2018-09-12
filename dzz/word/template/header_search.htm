@@ -1,0 +1,52 @@
+<style>
+    .input-search .search_top .header-closebutton1 {
+        display: none;
+        right:20px;
+        color: #FFFFFF;
+        opacity: 0.5;
+        line-height: 46px;
+        top:0;
+        font-size: 22px;
+        width: 36px;
+        height: 46px;
+        text-align: center;
+        position: absolute;
+        cursor: pointer;
+    }
+    .input-search.focus .header-closebutton1 {
+        color: #666;
+    }
+</style>
+<div class="input-search">
+ <form name="search" action="{BASESCRIPT}" method="get" class="search_top">
+    <input type="hidden" name="mod" value="{MOD_NAME}" />
+    <input type="hidden" name="op" value="{OP_NAME}" />
+    <input type="hidden" name="do" value="" />
+
+    <i class="input-search-icon glyphicon glyphicon-search" aria-hidden="true" onclick="jQuery('form').submit()"></i>
+    
+    <input id="searchval" class="form-control search form-search" name="keyword" placeholder="{eval echo lang(search)}" type="text" value="$_GET['keyword']" placeholder=""/>
+    <span aria-hidden="true" id="emptysearchcondition" class="header-closebutton1">×</span>
+				
+ </form>
+</div>
+<script type="text/javascript">
+
+jQuery('#searchval').focus(function (e) {//头部搜索框变颜色
+    jQuery(this).closest('.input-search').addClass('focus');
+	if(this.value!='') jQuery('#emptysearchcondition').show();
+});
+jQuery('#searchval').blur(function (e) {//失去焦点时
+	 jQuery(this).closest('.input-search').removeClass('focus');
+	 if(this.value=='') jQuery('#emptysearchcondition').hide();
+});
+jQuery('#searchval').keyup(function (e) {//失去焦点时
+	if(this.value!='') jQuery('#emptysearchcondition').show();
+});
+jQuery('#emptysearchcondition').on('click',function(){
+	jQuery('#searchval').val('');
+	jQuery('#searchval').closest('form').submit();
+	jQuery('#emptysearchcondition').hide();
+	return false;
+});
+</script>

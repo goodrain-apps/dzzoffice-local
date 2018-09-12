@@ -1,0 +1,302 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="{MOD_PATH}/images/word.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/bootstrap/js/bootstrap.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/input_field.js"></script>
+<script type="text/javascript" src="{MOD_PATH}/scripts/index.js?{VERHASH}"></script>
+<script type="text/javascript" src="{MOD_PATH}/scripts/image_resize.js?{VERHASH}"></script>
+<style>
+    body {
+        background-color: #eee;
+        min-width: 520px;
+        padding-right: 0px !important;
+    }
+    .navbar-inverse {
+        background-color: #396dcc;
+    }
+    .input-search .input-search-icon, .input-search .header-closebutton {
+        left:20px;
+    }
+</style>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+<nav class="navbar navbar-inverse back-nav" style="display: none;">
+    <ul class="nav navbar-nav navbar-nav-left view-navbar-nav-left">
+        <li>
+            <a href="{MOD_URL}" style="padding: 8px;">
+                <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width: 24px;height: 24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+            </a>
+        </li>
+        <li>
+            <a href="{MOD_URL}" class="navbar-nav-left-appname">{eval echo lang('tpl_bank')}</a>
+        </li>
+    </ul>
+</nav>
+<div class="bs-container clearfix" style="height: 100%">
+    <div class="bs-left-container  clearfix" style="height: 100%;z-index: 1000;">
+        <div class="app-name"><a style="cursor: pointer;">{eval echo lang('docs')}</a></div>
+        <div class="leftItem">
+            <ul class="left-ul">
+                <li><a class="setting" href="{MOD_URL}&op=ajax&do=setting"><i class="dzz dzz-settings"></i> {eval echo lang('settings')}</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="bs-main-container" style="padding-top: 64px;<!--{if !$setting[tplhide]}-->padding-bottom: 64px;<!--{/if}-->">
+        <div class="main-content container clearfix" id="itemContainer" style="padding:0;height: 100%;width: 100%;overflow: auto;<!--{if $setting[tplhide]}-->margin-top: -64px;<!--{/if}-->position: relative;">
+            <div class="template-wrap" style="<!--{if !$setting[tplhide]}-->height: 0px;position:fixed;top: 64px;<!--{/if}-->">
+                <div class="temp-top clearfix">
+                    <div class="topwrap clearfix">
+                        <div class="new">{eval echo lang('create_file')}</div>
+                        <div class="list" onclick="showTemp(this)">{eval echo lang('tpl_bank')} <i class="dzz dzz-expand-more"></i></div>
+                        <!--{if $_G['adminid']}--><a href="index.php?mod=word&op=tplmanage" class="manage"><i class="dzz dzz-create"></i> {eval echo lang('tpl_manage')}</a><!--{/if}-->
+                    </div>
+                    <div class="temp-container clearfix">
+                        <div class="all-temp clearfix">
+                            <div class="use clearfix">
+                                <a class="temp-item add-temp" style="cursor: pointer;" onclick="showWindow('addemptydoc-window','{MOD_URL}&op=ajax&do=showwindow&operation=addemptydoc')">
+                                    <div class="add-img"><i class="dzz dzz-add"></i></div>
+                                    <div class="temp-info null">
+                                        <div class="temp-name">{eval echo lang('null')}</div>
+                                    </div>
+                                </a>
+                                <!--{loop $lately_tpl $value}-->
+                                    <a class="temp-item" style="cursor: pointer;" onclick="showWindow('addbytpl-window','{MOD_URL}&op=ajax&do=showwindow&operation=addbytpl&tid={$value[tid]}')">
+                                        <div class="temp-img"><img onload="image_resize(this)" src="{$value['img']}" alt=""></div>
+                                        <div class="temp-info">
+                                            <div class="temp-name">{$value['title']}</div>
+                                        </div>
+                                    </a>
+                                <!--{/loop}-->
+                            </div>
+                            <!--{loop $data $key $value}-->
+                                <div class="resume clearfix">
+                                    <div class="resume-title">{$tpl_cat[$key]['name']}</div>
+                                    <!--{loop $value $val}-->
+                                        <a class="temp-item" style="cursor: pointer;" onclick="showWindow('addbytpl-window','{MOD_URL}&op=ajax&do=showwindow&operation=addbytpl&tid={$val[tid]}')">
+                                            <div class="temp-img"><img onload="image_resize(this)" src="{$val['img']}" alt=""></div>
+                                            <div class="temp-info">
+                                                <div class="temp-name">{$val['title']}</div>
+                                            </div>
+                                        </a>
+                                    <!--{/loop}-->
+                                </div>
+                            <!--{/loop}-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-file-wrap clearfix <!--{if !$setting[tplhide]}-->fix-nav<!--{/if}-->" style="<!--{if !$setting[tplhide]}-->top: 64px; position: fixed;<!--{/if}-->">
+                <div class="btn-file clearfix">
+                    <div class="btnGroup">
+                        <a href='javascript:;' onclick="switchShowType(this)"><i class="dzz <!--{if $showtype == 'list'}-->dzz-view-list<!--{else}-->dzz-view-module<!--{/if}-->" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('view_tab')}"></i></a>
+                        <div class="dropdown" style="display: inline-block;">
+                            <a class="btn btn-more dropdown-toggle" style="padding: 12px;display: inline-block;vertical-align: 0px;opacity:1;border: none;" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="dzz dzz-paixu" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('tpl_sort')}"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu4" style="margin-top: 0;left:-70px;">
+                                <li><a style="cursor: pointer;" onclick="loadmore('&keyword={$_GET['keyword']}&order=open')">{eval echo lang('open_time')}</a></li>
+                                <li><a style="cursor: pointer;" onclick="loadmore('&keyword={$_GET['keyword']}&order=edit')">{eval echo lang('edit_time')}</a></li>
+                                <li><a style="cursor: pointer;" onclick="loadmore('&keyword={$_GET['keyword']}&order=name')">{eval echo lang('tpl_title')}</a></li>
+                            </ul>
+                        </div>
+
+                        <a style="cursor: pointer;" class="sel-folder" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('open_file_selection')}"><i class="dzz dzz-folder"></i>
+                            <input type="file" name="files[]"  class="upload" multiple="multiple" title=" "  accept="application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="edit-wrap" style="<!--{if !$setting['tplhide']}-->padding-top: 20px<!--{/if}-->">
+                <div class="edit-scroll">
+                    <div class="edit">
+
+                        <div class="edit-use">
+                            <div class="loader" data-turl="&keyword={$_GET['keyword']}&order={$_GET['order']}" data-next="0"> <div class="loader-inner ball-beat"> <div></div> <div></div> <div></div> </div> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="publish_stick" class="m-g H" style="<!--{if !$setting[tplhide]}-->display: block;<!--{/if}-->">
+        <div class="ax"></div>
+        <div class="vc">
+            <!--{if $_G['adminid']}-->
+                <div class="V">
+                    <a class="r nX file-btn" href="index.php?mod=word&op=tplmanage"><i class="dzz dzz-dashboard" style="opacity: 1"></i></a>
+                    <label class="bA lN">
+                        <div class="rv">{eval echo lang('tpl_manage')}</div>
+                    </label>
+                </div>
+            <!--{/if}-->
+            <div class="V">
+                <div class="r nX file-btn" onclick="showTemp(this)"><i class="dzz dzz-file-text"></i></div>
+                <label class="bA lN">
+                    <div class="rv">{eval echo lang('choose_tpl')}</div>
+                </label>
+            </div>
+        </div>
+        <div class="gY">
+            <button class="r gw" onclick="showWindow('addemptydoc-window','{MOD_URL}&op=ajax&do=showwindow&operation=addemptydoc')">
+                <div class="no aL"></div>
+                <div class="no a9"></div>
+            </button>
+            <label class="bA lF">
+                <div class="rv">{eval echo lang('create_file')}</div>
+            </label>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var mod_url = '{MOD_URL}';
+    function showTemp(el) {
+        jQuery(el).hide();
+        jQuery(el).parents('#publish_stick').hide();
+        jQuery('.list').hide();
+        var hei=jQuery(window).height()-jQuery('.navbar').height();
+        jQuery('.template-wrap').css({
+            'overflow':'auto',
+            <!--{if $setting[tplhide]}-->
+            'position':'fixed',
+            'top':'64px'
+            <!--{/if}-->
+        });
+        jQuery('.main-content').css('overflow','hidden');
+        jQuery('.template-wrap').animate({height:hei},'slow');
+        jQuery('.resNav').hide();
+        jQuery('.back-nav').show();
+    }
+    jQuery(document).ready(function(){
+        jQuery('.main-content').scroll(function () {
+            var hei=jQuery('.template-wrap').height();
+            if(jQuery(this).scrollTop()>hei) {
+                jQuery('.btn-file-wrap').addClass('fix-nav').css({
+                    'position':'fixed',
+                    'top':'64px',
+                    'margin-top':'0',
+                    'margin-right':'12px'
+                })
+                jQuery('#publish_stick').show();
+            }else {
+                <!--{if $setting[tplhide]}-->
+                jQuery('.btn-file-wrap').removeClass('fix-nav').css({
+                    'position':'absolute',
+                    'top':'300px'
+                })
+                jQuery('#publish_stick').hide();
+                <!--{/if}-->
+            }
+
+        });
+        loadmore();
+        jQuery("#itemContainer").scroll(function(e) {//滚动加载
+            var p_height = jQuery("#itemContainer").height();
+            var height = jQuery(".edit-wrap").innerHeight();
+            var scroll_top = jQuery("#itemContainer").scrollTop();
+            if(scroll_top+p_height>=height-20){
+                 jQuery('.loader').click();
+            }
+        });
+
+    })
+
+   function loadmore(turl){
+       var load = jQuery(".loader");
+       if(load.attr('uploaded')) return;
+       load.attr('uploaded', 1);
+       var start = load.data("next");
+       var data_turl = load.data("turl");
+       if(turl){
+            start = 0;
+            data_turl = turl;
+            jQuery('.edit-use').html('<div class="loader" data-turl="'+data_turl+'" data-next="0"> <div class="loader-inner ball-beat"> <div></div> <div></div> <div></div> </div> </div>');
+       }
+       jQuery.get('{MOD_URL}&op=ajax&do=mydoc'+data_turl, {'start':start}, function(html){
+            var time = jQuery(".edit-use").children(".temp-table:last").data("time");
+            if (time && time == jQuery(html).first().data("time")) {
+                jQuery(".edit-use").children(".temp-table:last").find("tr:last").after(jQuery(html).first().find("tr"));
+                jQuery(".loader").replaceWith(jQuery(html).filter(':gt(0)'));
+            } else {
+                jQuery(".loader").replaceWith(html);  
+            }
+       })
+   }
+
+   function switchShowType(t){
+        jQuery.get('{MOD_URL}&op=ajax&do=setting&operation=switchshowtype',{},function(data){
+            var c = data.type == 'list' ? 'dzz-view-list' : 'dzz-view-module';
+            jQuery(t).find('i').removeClass('dzz-view-list dzz-view-module').addClass(c);
+            var loaderhtml = '<div class="loader" data-turl="&keyword={$_GET["keyword"]}&order={$_GET["order"]}" data-next="0"> <div class="loader-inner ball-beat"> <div></div> <div></div> <div></div> </div> </div>';
+            jQuery('.edit-use').html(loaderhtml);
+            loadmore();
+        },'json');
+   }
+
+   function docdelete(t){
+       showDialog('{eval echo lang(true_remove_file)}','confirm','',function () {
+           var dpath = [jQuery(t).parents(".item").data('dpath')];
+           var rid =jQuery(t).parents(".item").data('rid');
+           jQuery.post('{MOD_URL}&op=ajax&do=deletedoc', {'rids': dpath}, function(data){ 
+               if (data.sucessicoids) {
+                   jQuery(t).parents(".item").remove();
+               } else {
+                    showmessage(data.msg[rid], 'error', 1000, 1);
+               }
+           }, 'json')
+       })
+   }
+
+jQuery(document).ready(function(){
+    jQuery('.upload').fileupload({ 
+        url: '{MOD_URL}&op=ajax&do=uploads&container={$setting[savepath]}',
+        dataType: 'json',
+        autoUpload: true,
+        maxChunkSize: (parseInt('{$_G[setting][maxChunkSize]}') || 2000000), //2M
+        maxFileSize: parseInt('{$space[maxattachsize]}')>0?parseInt('{$space[maxattachsize]}'):null, // 5 MB
+        acceptFileTypes:new RegExp("(\.|\/)([doc|docx])$",'i'),
+        sequentialUploads:true,
+    }).on('fileuploadadd', function (e, data) {
+            jQuery.each(data.files, function (index, file) {
+                if(!file.name) file.name='new.doc';
+                    var type_arr = new Array('application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+                    if(jQuery.inArray(file.type, type_arr) < 0){
+                        showmessage('{eval echo lang(chose_doc_file)}', 'error', 1000, 1);
+                        return;
+                    }
+            });
+        }).on('fileuploadfail', function (e, data) {
+            showmessage('{eval echo lang(add_failed)}', 'error', 1000, 1);
+        }).on('fileuploaddone', function (e, data) {
+            jQuery.each(data.result.files, function (index, file) {
+                if(file.error){
+                        showmessage(file.error, 'error', 1000, 1);
+                    }else{
+                        var rid = file.data.icoarr[0]['rid'];
+                        jQuery.get('{MOD_URL}&op=ajax&do=getitem', {'rid': rid}, function(html){
+                            if (jQuery(".edit-use").find('.temp-table').first().data('time') == 'today') {
+                                jQuery(".edit-use").find('tr:eq(0)').before(jQuery(html).find('.item'));
+                            } else {
+                                jQuery('.edit-use').prepend(html);
+                            }
+                            showmessage('{eval echo lang(add_success)}', 'success', 1000, 1);
+                            jQuery(".edit-use").find('.item:eq(0)').animate({opacity:1}, 1000);
+                        })
+                        if ('{$setting["createtype"]}' == '1') {
+                            opendoc('<!--{if $setting[openurl]}-->{$setting[openurl]}&path='+file.data.icoarr[0]['apath']+'<!--{/if}-->', rid, 1);
+                        }
+                    }
+            });
+        });
+})
+
+
+</script>
+
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script type="text/javascript" src="static/jquery_file_upload/jquery.ui.widget.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.iframe-transport.js?{VERHASH}"></script>
+<!-- The basic File Upload plugin -->
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload-process.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload-validate.js?{VERHASH}"></script>

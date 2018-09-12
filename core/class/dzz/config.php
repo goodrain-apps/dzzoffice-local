@@ -10,7 +10,7 @@ class Config{
         //应用常量
         define('APP_PATH',CURSCRIPT);
         define('APP_NAME',CURSCRIPT);
-        define('APP_DIR',DZZ_ROOT.APP_PATH);
+        define('APP_DIR',DZZ_ROOT.APP_PATH+"/custom");
         define('APP_URL','index.php');
  		//默认应用配置
         $default_mod_file=DZZ_ROOT.'./data/cache/default_mod.php';

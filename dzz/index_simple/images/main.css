@@ -1,0 +1,153 @@
+@charset "utf-8";
+/* CSS Document */
+
+nav {
+    min-width: 320px;
+}
+.navbar-inverse{
+    background: transparent;
+    border-bottom: 1px solid #e8e8e8;
+}
+.navbar-inverse .navbar-nav>li>a{
+	color:inherit;
+}
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover{
+	color:inherit;
+}
+.site-logo>img{
+	max-height:30px;
+}
+.site-name{
+	line-height: 30px;
+	padding-left:10px;
+}
+.navbar-notice span{
+	background:#e5e5e5;
+	color:#4e5563;
+}
+.navbar-notice span.badge{
+	background-color: #db4437;
+	color:#FFF;
+}
+.bs-container{
+	min-height:100%;
+	padding-top:65px;
+}
+.bs-left-container{
+	width:0;
+	min-height:100%;
+}
+.bs-main-container{
+	margin-left:0;
+	padding:0;
+}
+.main-content{
+	padding:0;
+	min-height:90%;
+	display:table;
+}
+.popup-index {
+    margin: 0;
+    padding: 38px;
+	text-align: left;
+	display:table-cell;
+	vertical-align: middle;
+}
+.popup-index>li{
+	margin:30px;
+}
+.popup-index>li .app-popup-li{
+	margin:15px 5px;
+}
+
+.popup-index>li.ui-sortable-helper{
+	border:1px solid transparent;
+	opacity: 0.6;
+}
+.popup-index>li.ui-state-default{
+	display: inline-block;
+	border:1px solid #e1e1e1;
+	height:170px;
+	width:170px;
+	margin:-16px 30px;
+}
+
+.popup-index>li .app-popup-li img {
+    display: inline-block;
+    vertical-align: top;
+    height: 100px;
+    width: 100px;
+}
+.popup-index>.popup-index-li:hover{
+	border:1px solid transparent;
+	
+}
+.popup-index>li .app-popup-li:hover img {
+	opacity: 0.85;
+	transform: scale(1.01);
+}
+
+.popup-index>li .app-popup-li .app-popup-li-appname {
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 158px;
+    padding: 0 5px;
+    line-height: 30px;
+    font-size: 18px;
+    color: #333333;
+}
+@media (min-width: 375px){
+	.popup-index{
+		padding:15px;
+	}
+	.popup-index>li{
+		margin:0;
+	}
+}
+@media (min-width: 414px){
+	.popup-index{
+		padding:13px;
+	}
+	.popup-index>li{
+		margin:10px;
+	}
+	
+}
+@media (min-width: 768px){
+	.container {
+		width: 750px;
+	}
+	.popup-index>li{
+		margin:25px;
+	}
+	
+}
+@media (min-width: 992px){
+	.container {
+		width: 970px;
+	}
+	.popup-index{
+		padding:28px;
+	}
+	.popup-index>li{
+		margin:27px;
+	}
+	
+}
+
+@media (min-width: 1260px){
+	.container {
+		width: 1245px;
+	}
+	.popup-index{
+		padding:28px;
+	}
+	.popup-index>li{
+		margin:30px;
+	}
+}
+
+
+

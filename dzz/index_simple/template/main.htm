@@ -1,0 +1,46 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="{MOD_PATH}/images/main.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<style>
+.resNav .navbar-nav > .open > a, .resNav .navbar-nav > .open > a:focus, .resNav .navbar-nav > .open > a:hover {
+    background-color:transparent;
+}
+</style>
+
+<!--{template common/header_simple_end}-->
+<!--模板body区域,直接加入自己的模板代码即可，body标签已经存在-->
+<!--{template commer_header}-->
+<div class="bs-container clearfix">
+  <div class="bs-main-container">
+    <div class="main-content container">
+      <ul  class="app_popup popup-index ui-sortable">
+        <!--{loop $applist_1 $key $value}-->
+        
+        <li class="popup-index-li" data-appid="$value[appid]"> <a class="app-popup-li" href="$value['url']" title="$value[appname]" <!--{if $value['open']}-->target="_blank"<!--{/if}-->> <span class="app-popup-li-appico"> <img src="$value[appico]"> </span> <span class="app-popup-li-appname"> $value[appname] </span> </a> </li>
+        <!--{/loop}-->
+		  
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+	jQuery('.left-drager').leftDrager_layout();
+	jQuery(document).ready(function(){
+		jQuery('.ui-sortable').sortable({
+			placeholder: "ui-state-default",
+			items: "li.popup-index-li",
+			stop: function( event, ui ) {
+				var appids=[];
+				jQuery('.ui-sortable li').each(function(){
+					appids.push(jQuery(this).data('appid'));
+				});
+				jQuery.post('{MOD_URL}&do=saveIndex',{"appids":appids});
+			}
+		});
+	});
+</script>
+<script  type="text/javascript" src="{MOD_PATH}/scripts/jquery-ui.js?{VERHASH}"></script>
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<!--{template common/footer_simple}-->

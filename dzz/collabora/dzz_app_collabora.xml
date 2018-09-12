@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Dzz! app]]></item>
+	<item id="Version"><![CDATA[2.0 beta]]></item>
+	<item id="Time"><![CDATA[2018-05-31 17:41]]></item>
+	<item id="From"><![CDATA[乐云网络 (http://www.dzzoffice.com/)]]></item>
+	<item id="Data">
+		<item id="app">
+			<item id="appname"><![CDATA[Collabora Office]]></item>
+			<item id="appico"><![CDATA[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEMAAABDCAYAAADHyrhzAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+AAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAW
+dEVYdENyZWF0aW9uIFRpbWUAMDMvMTAvMTgFlW0+AAAD90lEQVR4nN3bwWubZRzA8W/zRtu9HcbZ
+tKB1Ywt0FzfZ3ctWBCkiK3jRy+htINtlB7WDuR50HoSJ7hQUJvMfqB4snnb1Ng8ONusyVzY0awax
+oW+TNG/iwT0Sg2/zvu/z/J48yRdKaWnyPO+H9O37Pk9Kp9Oh34duiwvFk9pPYqB+x5mRnsDiQvE6
+cHNxobgkPZZuohhPIZaefnnddRAxjB4IldMgIhgRECpnQYxj9IFQOQliFCMmhMo5EGMYCSFUToEY
+wUgJoXIGRBtDE0LlBIgWhiEI1cBBUmMYhlANFCQVhhCEamAgiTGEIVQDAUmEYQlCZR0kNoZlCJVV
+kFgYjUbj8yOFqSXhuURlDSQWxu3bv5xYvjzPsVdfkp5PVFZAYmHs7u6ysXGPCx+8xvzrR6XnFJU4
+SOxzRhiGrK//yrtnXhlZkMR/Wkul0siCpLroUiBvLR43PZ+4iYCkvhwvlUq88eYhzl84aXA6iTIO
+onWj9ujRQw4XsiMDon0LX6lsjgyIkcWdUQExtuynQD774jSTk8+aetokaYMYXRCuVDapNx6zcmVh
+KEGMbxUEQTC0ICKbSMMKIra9qEC+LL7NkcKU1DB7lRhEdOM5CALu37/L8uX5oQARf0tCGIZsbNwb
+ChBxDBgeECsYAOPj4/xVbfK4XLM1ZHdV4Od+P2QFw/d9JsZnWLm4xvZ208aQ3VWBU6trZ/tiZKVn
+ks9P0w4nnYcAYYx8fprfSy2uXf1OcpioEkGA4K9JPj/N3TubXPn4G6kh9ioxBAhhKIhPP/mW5u4W
+9UZFYpioUkGAAMbs7Mv/QqiCRpl228r5IjUEGD5nFAoFvir+yNoPP/3n+51OSC14QG7/nMnhetOC
+AIOvjCgIVSvcYadRNjVcb9oQYAijH4QqqJdphTsmhuzOCARoYniex9zc0VgQqlrwgE4n1Bm2O2MQ
+oHHO8DyPgwcPs3LpBrdurcd+XLvdJGiUmZzQ3rc1CgEpMRTEh+9/zW/rDxM/vtXapt1uksmkXvgx
+DgEpMJJCPJPdj+dNkM3s++ezty/VRLsSgYCEGL7vMzPzYiSEwIH3JgYBCTB83yebfY5z713jzz+e
+2Djw3kQhICZGLperepkDfLT8PTu1F5jKzUrNJypxCICxmP929fyZd27crG3VT0hOJiJjEP2ONdZ1
+xtjYWLW2VT9FjNUiw1l5RahiX3Strp2tAjZBrEJAwitQiyDWISDF5bgFkIFAQMp7E0GQgUGAxo2a
+AMhAIUDzrtUgyMAhwMB6hgEQJyDA0OKOBogzEGBw2S8FiFMQYHh1PAGIcxAgsFUQA8RJCBDaRNoD
+xFkIENxe/B8QpyFA+C0JXSCrOA4B8DeIGkYzjBPsagAAAABJRU5ErkJggg==
+]]></item>
+			<item id="appdesc"><![CDATA[利用Collabora Office服务端打开office文档]]></item>
+			<item id="appurl"><![CDATA[{dzzscript}?mod=collabora]]></item>
+			<item id="appadminurl"><![CDATA[{dzzscript}?mod=collabora&op=admin]]></item>
+			<item id="noticeurl"><![CDATA[]]></item>
+			<item id="disp"><![CDATA[113]]></item>
+			<item id="vendor"><![CDATA[Collabora Office]]></item>
+			<item id="haveflash"><![CDATA[0]]></item>
+			<item id="isshow"><![CDATA[0]]></item>
+			<item id="havetask"><![CDATA[1]]></item>
+			<item id="hideInMarket"><![CDATA[0]]></item>
+			<item id="feature"><![CDATA[]]></item>
+			<item id="fileext"><![CDATA[lwp,svg,pot,xla,sxw,odt,fodt,sxc,ods,fods,sxi,odp,fodp,sxd,odg,fodg,odc,sxg,odm,stw,ott,otm,stc,ots,sti,otp,std,otg,odb,oxt,doc,dot,xls,ppt,docx,docm,dotx,dotm,xltx,xltm,xlsx,xlsb,xlsm,pptx,pptm,potx,potm,wpd,pdb,hwp,wps,wri,dif,slk,csv,dbf,wk1,cgm,dxf,emf,wmf,cdr,vsd,vss,pub,lrf,gnumeric,mw,numbers,oth,p65,rtf,txt,fb2,cwk,wpg,pages,ppsx,key,abw,fh,sxs,602,tiff,pdf]]></item>
+			<item id="group"><![CDATA[0]]></item>
+			<item id="position"><![CDATA[1]]></item>
+			<item id="system"><![CDATA[0]]></item>
+			<item id="notdelete"><![CDATA[1]]></item>
+			<item id="open"><![CDATA[0]]></item>
+			<item id="nodup"><![CDATA[0]]></item>
+			<item id="identifier"><![CDATA[collabora]]></item>
+			<item id="app_path"><![CDATA[dzz]]></item>
+			<item id="version"><![CDATA[1.0]]></item>
+			<item id="extra">
+				<item id="enablefile"><![CDATA[enable.php]]></item>
+			</item>
+			<item id="mid"><![CDATA[14]]></item>
+		</item>
+		<item id="version"><![CDATA[2.0 beta]]></item>
+	</item>
+</root>

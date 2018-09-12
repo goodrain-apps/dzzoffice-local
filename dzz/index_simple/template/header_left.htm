@@ -1,0 +1,10 @@
+<ul class="nav navbar-nav navbar-nav-left">
+    
+    <li>
+		<a class="site" href="{$_G[siteurl]}"><span class="site-logo">
+      
+        <img src="{eval echo $_G['setting']['sitelogo']?'index.php?mod=io&op=thumbnail&size=small&path='.dzzencode('attach::'.$_G['setting']['sitelogo']):'static/image/common/logo.png';}" style="max-height:30px;">
+      
+        </span><span class="site-name">$_G['setting']['sitename']</span></a>
+    </li>
+</ul>
