@@ -10,4 +10,5 @@ if [ "`ls -A $CONFIG`" = "" ]; then
  mv /app/config2/* /app/config
 fi
 echo "complete init data and config"
+sleep $PAUSE
 exec vendor/bin/heroku-php-apache2
