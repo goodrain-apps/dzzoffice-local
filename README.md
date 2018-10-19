@@ -1,7 +1,7 @@
 | 应用名称 | DzzOffice                                          |
 | -------- | -------------------------------------------------- |
 | 简述     | Dzzoffice是一套开源办公套件，企业协同办公平台      |
-| 版本列表 | V1.0                                               |
+| 版本列表 | V2.0                                               |
 | 源码地址 | <https://github.com/goodrain-apps/dzzoffice-local> |
 | 社区地址 | http://t.goodrain.com/t/dzzoffice/496              |
 
